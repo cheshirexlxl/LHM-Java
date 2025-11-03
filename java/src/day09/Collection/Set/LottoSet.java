@@ -1,6 +1,7 @@
 package day09.Collection.Set;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
@@ -29,8 +30,10 @@ public class LottoSet {
 		// HashSet --> ArrayList 로 변환
 		List<Integer> lottoList = new ArrayList<Integer>( lottoSet );
 		
-		// 오름차순
+		// 오름차순 정렬
+		Collections.sort( lottoList );
 		
+		System.out.println("로또 번호 : " + lottoList);		
 	}
 
 }
