@@ -29,6 +29,6 @@ public class Board {
 	@NonNull private String writer;
 	@NonNull private String content;
 	private Date createdAt;
-	private Date updatedAt;
+	private Date updatedAt;  
 	
 }
