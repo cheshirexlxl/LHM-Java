@@ -1,0 +1,27 @@
+package application;
+
+import javafx.event.ActionEvent;
+
+public class MainController {
+
+    @FXML
+    void board(ActionEvent event) {
+
+    }
+
+    @FXML
+    void join(ActionEvent event) {
+
+    }
+
+    @FXML
+    void login(ActionEvent event) {
+
+    }
+
+    @FXML
+    void menu(ActionEvent event) {
+
+    }
+
+}

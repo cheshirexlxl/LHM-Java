@@ -1,0 +1,28 @@
+package application;
+	
+import javafx.application.Application;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
+
+
+public class Main extends Application {
+	
+	/**
+	 * 화면 시작 메소드
+	 */
+	@Override
+	public void start(Stage stage) {
+		// Main.fxml 화면 파일 로드
+		
+		// Main.fxml 화면 레이아웃을 지정하여 Scene 생성
+		
+		// Stage 에 Scene 등록
+		
+		// Stage 출력
+	}
+	
+	public static void main(String[] args) {
+		launch(args);
+	}
+}
