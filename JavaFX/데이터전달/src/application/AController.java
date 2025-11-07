@@ -32,4 +32,9 @@ public class AController {
     	stage.show();    	
     }
 
+	@FXML public void toC() {
+		String data = input.getText();
+		StageManager.show("C", data);
+	}
+
 }
