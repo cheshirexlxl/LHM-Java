@@ -2,18 +2,17 @@
 <section name="Workbench">
 	<item key="hasShownOverlayPopupBefore" value="true"/>
 	<section name="java.lang.Class">
-		<item key="selection" value="Items"/>
+		<item key="selection" value="calcRank"/>
 		<item key="replaceBarOpen" value="false"/>
 		<list key="findhistory">
+			<item value="calcRank"/>
+			<item value="searchStudent"/>
+			<item value="input"/>
+			<item value="Menu"/>
 			<item value="root"/>
 			<item value="setRoot"/>
 			<item value="Items"/>
 			<item value="item"/>
-			<item value="Node"/>
-			<item value="530"/>
-			<item value="pane"/>
-			<item value="BorderPane"/>
-			<item value="container"/>
 		</list>
 	</section>
 </section>
