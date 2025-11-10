@@ -1,9 +1,9 @@
-package 게시판.DAO;
+package application.DAO;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import 게시판.DTO.Board;
+import application.DTO.Board;
 
 /**
  * 데이터 접근 객체
