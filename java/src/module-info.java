@@ -1,9 +1,3 @@
-/**
- * 
- */
-/**
- * 
- */
 module java {
 	requires lombok;
 }
