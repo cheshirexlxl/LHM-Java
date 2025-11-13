@@ -1,19 +1,25 @@
 package Ex02;
 
-public class Library {
-	public static void main(String[] args) {
-		
-		System.out.println("######## 조은 스터디 도서관 ########");			
-		
-		Book book = new Book("123123", "이게 자바냐", "감자바" , "자바 감자바", 33000);
-		System.out.println(book);
-		// System.out.println(book.isbn + "\t|\t" + book.title + "\t|\t" + book.writer + "\t|\t" + book.content + "\t|\t" + book.price);
-		
-		Book book2 = new Book("112112", "정보처리기사", "김조은" , "국가기술자격", 45000);
-		System.out.println(book2.isbn + "\t|\t" + book2.title + "\t|\t" + book2.writer + "\t|\t" + book2.content + "\t|\t" + book2.price);
+import java.util.ArrayList;
 
-		Book book3 = new Book();
-		book3.setIsbn("001001");
-		System.out.println(book3.getIsbn());
+public class Library {
+	public static void main(String[] args) {				
+		
+		Book book1 = new Book("123123", "이게 자바냐", "감자바" , "자바 감자바", 33000);
+		Book book2 = new Book("112112", "정보처리기사", "김조은" , "국가기술자격", 45000);
+		Book book3 = new Book("001001", "실무 DB", "박디비" , "디비디비딥", 60000);
+		
+		// 컬렉션 추가
+		ArrayList<Book> list = new ArrayList<>();
+		list.add(book1);
+		list.add(book2);
+		list.add(book3);
+		
+		System.out.println("######## 조은 스터디 도서관 ########");	
+		
+		// 반복문으로 출력
+		for (Book book : list) {
+			System.out.println(book.toString());
+		}
 	}
 }
