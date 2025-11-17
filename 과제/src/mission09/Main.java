@@ -9,7 +9,7 @@ public class Main {
 		
 		ArrayList<Object[]> list = new ArrayList<>();		
 		
-		int money = 50000;			// 화폐단위
+		int money = 50000;			// 화폐단위 AAA
 		int count = 0;				// 화폐매수		
 		
 		while(sc.hasNext()) {
