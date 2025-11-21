@@ -14,18 +14,24 @@ public class Account {
 
 	private String accountNumber;	// 계좌번호
     private String accountHolder;	// 예금주
-    private int balance;			// 잔고
+    private long balance;			// 잔고
+    private String password;		// 비밀번호
+	
     
-    // 생성자
+    // 기본 생성자
     public Account() {
-	}
-    
-	public Account(String accountNumber, String accountHolder) {
 		this.accountNumber = "계좌없음";
 		this.accountHolder = "이름없음";
 		this.balance = 0;
+		this.password = "";
 	}
 
+	public Account(String accountNumber, String accountHolder, long balance, String password) {
+		this.accountNumber = accountNumber;
+		this.accountHolder = accountHolder;
+		this.balance = balance;
+		this.password = password;
+	}	
 	
 	public String getAccountNumber() {
 		return accountNumber;
@@ -43,47 +49,50 @@ public class Account {
 		this.accountHolder = accountHolder;
 	}
 
-	public int getBalance() {
+	public long getBalance() {
 		return balance;
 	}
 
-	public void setBalance(int balance) {
+	public void setBalance(long balance) {
 		this.balance = balance;
 	}
-	
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	// 계좌등록
-	public void add() {
-		
+	public void add() {		
+		System.out.println("===============================");
+		System.out.println("'" + accountHolder + "'님의 계좌가 개설되었습니다.");
 	}
 	
 	// 입금
 	public void depositChek(int amount) {
-		if (amount > 0) {
-            balance += amount;
-            System.out.println("'" + accountHolder + "'님에게 입금하는게 맞으십니까?");
-            System.out.println("1. 예");
-			System.out.println("2. 아니오");
-			System.out.print("입력>> ");             
-		} else if(amount <= 1000000) {
-			System.err.println("한 번에 출금할 수 있는 금액은 1,000,000 원 입니다.");
+		System.out.println("============= 입금 =============");
+		if (amount > 0) {			
+			balance += amount;
+	            System.out.println("'" + accountHolder + "'님에게 입금하는게 맞으십니까?");
+	            System.out.println("1. 예");
+				System.out.println("2. 아니오");
+				System.out.print("입력>> "); 
         } else {
             System.err.println("유효하지 않은 입금액입니다.");
         }
 	}
 	
 	public void deposit(int amount) {
-		if (amount > 0) {
-            balance += amount;
-            System.out.println("'" + accountHolder + "'님의 계좌에 " + amount + " 원이 입금되었습니다.");
-		} else if(amount <= 1000000) {
-			System.err.println("한 번에 출금할 수 있는 금액은 1,000,000 원 입니다.");
-        } else {
-            System.err.println("유효하지 않은 입금액입니다.");
-        }
+        balance += amount;
+        System.out.println("'" + accountHolder + "'님의 계좌에 " + amount + " 원이 입금되었습니다.");
 	}
 	
 	// 출금
 	public void withdraw(int amount) {
+		System.out.println("============= 출금 =============");
 		if (amount > 0 && balance >= amount) {
             balance -= amount;
             System.out.println("'" + accountHolder + "'님의 계좌에 " + amount + " 원이 출금되었습니다.");
@@ -94,13 +103,12 @@ public class Account {
 	
 	// 계좌조회
 	public void check() {
-		
+		System.out.println("============= 계좌조회 =============");
 	}
 	
 	// 계좌목록
 	public void list() {
-		
-	}	
-    
+		System.out.println("============= 계좌목록 =============");
+	}    
 
 }
