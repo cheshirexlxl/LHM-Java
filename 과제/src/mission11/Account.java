@@ -65,29 +65,14 @@ public class Account {
 		this.password = password;
 	}
 
-	// 계좌등록
-	public void add() {		
-		System.out.println("===============================");
-		System.out.println("'" + accountHolder + "'님의 계좌가 개설되었습니다.");
-	}
-	
-	// 입금
-	public void depositChek(int amount) {
-		System.out.println("============= 입금 =============");
-		if (amount > 0) {			
-			balance += amount;
-	            System.out.println("'" + accountHolder + "'님에게 입금하는게 맞으십니까?");
-	            System.out.println("1. 예");
-				System.out.println("2. 아니오");
-				System.out.print("입력>> "); 
-        } else {
-            System.err.println("유효하지 않은 입금액입니다.");
-        }
-	}
-	
-	public void deposit(int amount) {
-        balance += amount;
-        System.out.println("'" + accountHolder + "'님의 계좌에 " + amount + " 원이 입금되었습니다.");
+	// 입금//	
+	public boolean deposit(long money) {
+		if(money <= 0) return false;
+		if(money > 1000000) return false;
+		if(balance + money > 1000000000) return false;
+		
+        balance += money;
+        return true;
 	}
 	
 	// 출금
@@ -101,14 +86,10 @@ public class Account {
         }
 	}  
 	
-	// 계좌조회
-	public void check() {
-		System.out.println("============= 계좌조회 =============");
+	@Override
+	public String toString() {
+		return "Account [accountNumber=" + accountNumber + ", accountHolder=" + accountHolder + ", balance=" + balance
+				+ "]";
 	}
-	
-	// 계좌목록
-	public void list() {
-		System.out.println("============= 계좌목록 =============");
-	}    
 
 }
