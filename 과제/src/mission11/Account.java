@@ -65,25 +65,30 @@ public class Account {
 		this.password = password;
 	}
 
-	// 입금//	
+	// 입금
 	public boolean deposit(long money) {
 		if(money <= 0) return false;
-		if(money > 1000000) return false;
-		if(balance + money > 1000000000) return false;
+		if(money > 1000000) return false;				// 1회 최대 100만
+		if(balance + money > 1000000000) return false;	// 관리 예금액 최대 10억
 		
         balance += money;
         return true;
 	}
 	
 	// 출금
-	public void withdraw(int amount) {
-		System.out.println("============= 출금 =============");
-		if (amount > 0 && balance >= amount) {
-            balance -= amount;
-            System.out.println("'" + accountHolder + "'님의 계좌에 " + amount + " 원이 출금되었습니다.");
-        } else {
-            System.out.println("출금할 수 없습니다. 잔액이 부족하거나 유효하지 않은 금액입니다.");
-        }
+	public boolean withdraw(long money) {		
+        if (money <= 0) return false;
+        if (money > 1000000) return false;				// 1회 최대 100만
+        if (money > balance) return false;				// 잔고 부족
+
+        balance -= money;
+        return true;
+	} 
+	
+	// 비밀번호 체크
+	public boolean password(String pw) {
+		if (!this.password.equals(pw)) return false;	// 비밀번호 체크
+        return true;
 	}  
 	
 	@Override
