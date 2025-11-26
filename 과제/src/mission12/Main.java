@@ -21,14 +21,15 @@ public class Main {
 			System.out.print("[" + (i + 1) + " 게임] : ");
 			
 			for (int j = 0; j < 6; j++) {
+				// 랜덤
 				int rand = (int) (Math.random() * 45 + 1);
 				
 				// 중복제거
-				if(list.contains(rand)) j--;
+				if(list.contains(rand)) j--; // contains : 값이 존재하면 true, 존재하지 않으면 false 를 반환
 				else list.add(rand);
 			}	
 			
-			// 정렬
+			// 오름차순 정렬
 			Collections.sort( list );
 			
 			// 출력
