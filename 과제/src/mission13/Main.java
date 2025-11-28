@@ -28,11 +28,14 @@ import java.util.Scanner;
 public class Main {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
+		Singleton st = Singleton.getInstance();	// 싱글톤
+		
 		System.out.print("몇 게임? ");
 		int N = sc.nextInt();
 		
 		for (int i = 0; i < N; i++) {
 			ArrayList<Integer> list = new ArrayList<>();
+			ArrayList<Integer> list2 = new ArrayList<>();			
 			String[] arr = {"①", "②", "③", "④", "⑤", "⑥"};
 			
 			System.out.print("[" + (i + 1) + " 게임] (1.자동 / 2. 수동) : ");
@@ -40,40 +43,38 @@ public class Main {
 			
 			switch (num) {
 				case 1: 					
-					for (int j = 0; j < 6; j++) {
-						// 랜덤
-						int rand = (int) (Math.random() * 45 + 1);
-						
-						// 중복제거
-						if(list.contains(rand)) j--;
-						else list.add(rand);
-					}	
+					list = st.getRandNum();	// 싱글톤
 					break;	
-				case 2:
-					int lottoNum[] = new int[6];
-					for (int j = 0; j < lottoNum.length; j++) {
+				case 2:					
+					for (int j = 0; j < 6; j++) {
 						System.out.print(arr[j] + " : ");
-						int randNum = sc.nextInt();
-						lottoNum[j] = (int) randNum;
-					}	
-					System.out.print(lottoNum + " ");
+						int randNum = sc.nextInt();						
+						list2.add(randNum);						
+					}					
 					break;
 				default:
-					break;
+					System.err.println("선택할 수 없는 숫자입니다.");
+					 return;
 			}
-			
-			// 오름차순 정렬
-			Collections.sort( list );
 			
 			// 출력
-			for (Integer lotto : list) {
-				System.out.print(lotto + " ");
+			if( num == 1) {
+				for (Integer lotto : list) {
+					System.out.print(lotto + " ");
+				}
+			} else {
+				for (Integer lotto : list2) {
+					System.out.print(lotto + " ");
+				}				
 			}
+			System.out.println();			
 		}
 		
-		Singleton s01 = Singleton.getInstance();
-		Singleton s02 = Singleton.getInstance();
-		System.out.println(s01);
-		System.out.println(s02);
+		System.out.println("############ 인생역전 Lottoria ############");
+		System.out.println();
+		System.out.print("발행일\t: ");
+
+		
+		sc.close();
 	}
 }
