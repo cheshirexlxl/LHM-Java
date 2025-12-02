@@ -28,16 +28,18 @@ import java.util.Scanner;
  */
 public class Main {
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		Singleton st = Singleton.getInstance();	// 싱글톤		
-//		Calendar lottoCal = Calendar.getInstance();
-//		printCalendar("발행일\t: ", lottoCal);
+		Scanner sc = new Scanner(System.in);		
+		Singleton st = Singleton.getInstance();
+		Calendar lottoCal = Calendar.getInstance();	
+		
+		ArrayList<ArrayList<Integer>> allGames = new ArrayList<>(); // 숫자 리스트
+		ArrayList<String> gameTypes = new ArrayList<>(); // 자동/수동
 		
 		System.out.print("몇 게임? ");
 		int N = sc.nextInt();
 		
 		for (int i = 0; i < N; i++) {
-			ArrayList<Integer> list = new ArrayList<>();
+			ArrayList<Integer> list1 = new ArrayList<>();
 			ArrayList<Integer> list2 = new ArrayList<>();			
 			String[] arr = {"①", "②", "③", "④", "⑤", "⑥"};
 			
@@ -46,14 +48,18 @@ public class Main {
 			
 			switch (num) {
 				case 1: 					
-					list = st.getRandNum();	// 싱글톤
+					list1 = st.getRandNum();	// 싱글톤
+					allGames.add(list1);        // ★ 자동 번호 저장
+					gameTypes.add("자 동");     // ★ 자동 저장
 					break;	
 				case 2:					
 					for (int j = 0; j < 6; j++) {
 						System.out.print(arr[j] + " : ");
 						int randNum = sc.nextInt();						
 						list2.add(randNum);						
-					}					
+					}
+					allGames.add(list2);        // ★ 수동 번호 저장
+					gameTypes.add("수 동");     // ★ 수동 저장
 					break;
 				default:
 					System.err.println("선택할 수 없는 숫자입니다.");
@@ -62,7 +68,7 @@ public class Main {
 			
 			// 출력
 			if( num == 1) {
-				for (Integer lotto : list) {
+				for (Integer lotto : list1) {
 					System.out.print(lotto + " ");
 				}
 			} else {
@@ -73,10 +79,25 @@ public class Main {
 			System.out.println();			
 		}
 		
-		System.out.println("############ 인생역전 Lottoria ############");
+		System.out.println("############ 인생역전 Lottoria ############");				
+		st.printCalendar(lottoCal);
+		System.out.println("----------------------------------------------------");
+		// 뽑은 숫자 불러오기
+		for (int i = 0; i < allGames.size(); i++) {
+			char label = (char) ('A' + i);	// A,B,C,D
+		    System.out.print(label + " " + gameTypes.get(i) + "\t");
+		    for (int num : allGames.get(i)) {
+		    	String result = String.format("%02d", num);
+		        System.out.print(result + "\t");
+		    }
+		    System.out.println();
+		}
+		System.out.println("----------------------------------------------------");
+		int money = 1000 * N;
+		System.out.println("금액\t\t\t\t\t\t" + money);
+		System.out.println("####################################################");
 		System.out.println();
-		System.out.print("발행일\t: ");
-			
+		
 
 		
 		sc.close();
