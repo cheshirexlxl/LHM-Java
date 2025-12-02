@@ -27,6 +27,11 @@ public class Singleton {
     	// 오름차순 정렬
 		Collections.sort( list );
 		return list;
-    }    
+    }       
+
+	// 날짜
+//    public static void getDateTime() {
+//    	
+//    }  
     
 }

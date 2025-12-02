@@ -1,6 +1,7 @@
 package mission13;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Scanner;
 
@@ -28,7 +29,9 @@ import java.util.Scanner;
 public class Main {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		Singleton st = Singleton.getInstance();	// 싱글톤
+		Singleton st = Singleton.getInstance();	// 싱글톤		
+//		Calendar lottoCal = Calendar.getInstance();
+//		printCalendar("발행일\t: ", lottoCal);
 		
 		System.out.print("몇 게임? ");
 		int N = sc.nextInt();
@@ -73,6 +76,7 @@ public class Main {
 		System.out.println("############ 인생역전 Lottoria ############");
 		System.out.println();
 		System.out.print("발행일\t: ");
+			
 
 		
 		sc.close();
