@@ -1,8 +1,8 @@
 package mission13;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.Scanner;
 
 /**
@@ -32,8 +32,10 @@ public class Main {
 		Singleton st = Singleton.getInstance();
 		Calendar lottoCal = Calendar.getInstance();	
 		
-		ArrayList<ArrayList<Integer>> allGames = new ArrayList<>(); // 숫자 리스트
-		ArrayList<String> gameTypes = new ArrayList<>(); // 자동/수동
+		ArrayList<ArrayList<Integer>> lottoAll = new ArrayList<>(); // 로또 숫자 리스트
+		ArrayList<String> lottoType = new ArrayList<>(); // 자동/수동 타입
+		ArrayList<Integer> lottoNum = st.winningNum(); // 당첨번호
+		int bonus = st.bonusNum(); // 보너스 번호		
 		
 		System.out.print("몇 게임? ");
 		int N = sc.nextInt();
@@ -48,9 +50,9 @@ public class Main {
 			
 			switch (num) {
 				case 1: 					
-					list1 = st.getRandNum();	// 싱글톤
-					allGames.add(list1);        // ★ 자동 번호 저장
-					gameTypes.add("자 동");     // ★ 자동 저장
+					list1 = st.getRandNum();
+					lottoAll.add(list1);        // 자동 번호 저장
+					lottoType.add("자 동");     	// '자동' 저장
 					break;	
 				case 2:					
 					for (int j = 0; j < 6; j++) {
@@ -58,20 +60,21 @@ public class Main {
 						int randNum = sc.nextInt();						
 						list2.add(randNum);						
 					}
-					allGames.add(list2);        // ★ 수동 번호 저장
-					gameTypes.add("수 동");     // ★ 수동 저장
+					lottoAll.add(list2);        // 수동 번호 저장
+					lottoType.add("수 동");     	// '수동' 저장					
 					break;
 				default:
 					System.err.println("선택할 수 없는 숫자입니다.");
-					 return;
-			}
-			
+					return;
+			}			
 			// 출력
 			if( num == 1) {
+				// 자동일때
 				for (Integer lotto : list1) {
 					System.out.print(lotto + " ");
 				}
 			} else {
+				// 수동일때
 				for (Integer lotto : list2) {
 					System.out.print(lotto + " ");
 				}				
@@ -79,25 +82,42 @@ public class Main {
 			System.out.println();			
 		}
 		
-		System.out.println("############ 인생역전 Lottoria ############");				
+		
+		
+		System.out.println("############ 인생역전 Lottoria ############");	
+		
+		// 날짜
 		st.printCalendar(lottoCal);
 		System.out.println("----------------------------------------------------");
-		// 뽑은 숫자 불러오기
-		for (int i = 0; i < allGames.size(); i++) {
-			char label = (char) ('A' + i);	// A,B,C,D
-		    System.out.print(label + " " + gameTypes.get(i) + "\t");
-		    for (int num : allGames.get(i)) {
-		    	String result = String.format("%02d", num);
-		        System.out.print(result + "\t");
-		    }
-		    System.out.println();
-		}
-		System.out.println("----------------------------------------------------");
-		int money = 1000 * N;
-		System.out.println("금액\t\t\t\t\t\t" + money);
-		System.out.println("####################################################");
-		System.out.println();
 		
+		// 뽑은 숫자 불러오기	
+		for (int i = 0; i < lottoAll.size(); i++) {
+			char label = (char) ('A' + i);	// A,B,C,D...
+			st.printNum(String.valueOf(label), lottoType.get(i), lottoAll.get(i));
+		}
+		
+		System.out.println("----------------------------------------------------");
+		
+		// 금액
+		int money = 1000 * N;
+		NumberFormat nf = NumberFormat.getNumberInstance();
+		
+		System.out.println("금액\t\t\t\t\t\t₩" + nf.format(money));
+		System.out.println("####################################################");
+		System.out.println();		
+			
+		// 당첨번호
+		st.getWinningNum();	
+		
+		System.out.println();
+		System.out.println("########################## 당첨 결과 ##########################");
+		
+		// 당첨결과	
+		for (int i = 0; i < lottoAll.size(); i++) {
+			char label = (char) ('A' + i);	// A,B,C,D...
+			st.printResult(String.valueOf(label), lottoType.get(i), lottoAll.get(i), lottoNum, bonus);
+		}		
+		System.out.println("############################################################");
 
 		
 		sc.close();
