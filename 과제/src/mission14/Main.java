@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
+
 
 /*
  * ALOHA 스터디에서 월말 코딩 대회를 열었다. 
@@ -12,75 +14,51 @@ import java.util.Collections;
  * txt 파일에서 학생들의 성적정보 (번호/이름/성적/수업이름) 추출하여, 
  * 성적순으로 내림차순, 번호 순으로 오름차순 정렬하여 출력하시오 
  */
-public class Main {
-	
-	int num;
-	String name;
-	int score;
-	String className;
-	
-	
-	public Main(int num, String name, int score, String className) {
-		this.num = num;
-		this.name = name;
-		this.score = score;
-		this.className = className;
-	}
-//
-//	private static void Student(int num, String name, int score, String className) {
-//		
-//		
-//	}
-	
+public class Main {	
 	public static void main(String[] args) {
 		// 파일 경로
 		String filePath = "./src/mission14/student.txt";
 		
-		try (
-			// 문자 단위로 데이터 출력
-			FileReader fr = new FileReader(filePath);
-			// 데이터 출력 성능 향상
+		try (			
+			FileReader fr = new FileReader(filePath);		
 			BufferedReader br = new BufferedReader(fr);	
 		)		
 		{		
+			ArrayList<Student> list = new ArrayList<>();
 			
-			String text;
+			String text;			
 			
-			System.out.println("번호\t이름\t성적\t반");
-			while( ( text = br.readLine() ) != null ) {
-				ArrayList<Main> list = new ArrayList<>();
-				// System.out.println(text);
+			while( ( text = br.readLine() ) != null ) {			
+				String[] info = text.split("/");		// 텍스트 자르기
 				
-				String[] info = text.split("/");
-				int num = Integer.parseInt(info[0]);				
-				String name = info[1];
-				int score = Integer.parseInt(info[2]);				
-				String className = info[3];
+				int num = Integer.parseInt(info[0]);	// 번호			
+				String name = info[1];					// 이름
+				int score = Integer.parseInt(info[2]);	// 성적		
+				String className = info[3];				// 반
 				
-				list.add(new Main(num, name, score, className));
-				
-//				list.add(num);
-//				list.add(name);
-//				list.add(score);
-//				list.add(className);
-				
-				//Collections.sort(score);	// 오름차순
-				Collections.sort(list, (s1, s2) -> s1.score - s2.score);
-				
-				for (Main student : list) {
-					//System.out.print(student +"\t");
-					System.out.println(student.num + "\t" + student.name + "\t" + student.score + "\t" + student.className);
+				list.add(new Student(num, name, score, className)); // 값 가져오기
+			}			
+
+			// 정렬
+			Collections.sort( list, new Comparator<Student>() {
+				@Override
+				public int compare(Student o1, Student o2) {				
+					int num1 = o1.getNum();
+					int num2 = o2.getNum();
+					int score1 = o1.getScore();
+					int score2 = o2.getScore();				
+
+					int result1 = num1 - num2;				// 번호순 오름차순
+					int result2 = score2 - score1;   		// 성적순 내림차순
+					return result2 != 0 ? result2 : result1;			
 				}
-				//System.out.println();
-				
-				//System.out.println(list);
-//				System.out.print(num +"\t");
-//				System.out.print(name +"\t");
-//				System.out.print(score +"\t");
-//				System.out.print(className);
-//				System.out.println();
-			}
+			});
 			
+			// 출력
+			System.out.println("번호\t이름\t성적\t반");
+			for (Student st : list) {				
+				System.out.println(st.num + "\t" + st.name + "\t" + st.score + "\t" + st.className);
+			}			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
