@@ -5,8 +5,8 @@ public abstract class Shape {
 	
 	Point point;
 
-	abstract double area();
-	abstract double round();
+	abstract double area();		// 넓이
+	abstract double round();	// 둘레
 	
 	public Point getPoint() {
 		return point;
