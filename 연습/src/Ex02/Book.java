@@ -72,7 +72,7 @@ public class Book {
 	// 4. toString 메소드 정의
 	@Override
 	public String toString() {
-		return isbn + " | " + title + " | " + writer + " | " + content + " | "
+		return isbn + " \t| " + title + " \t| " + writer + " \t| " + content + " \t| "
 				+ price;
 	}
 	
