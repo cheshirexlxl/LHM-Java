@@ -1,29 +1,38 @@
 package application.controller;
 
+import application.DTO.Board;
+import application.Service.BoardService;
+import application.Service.BoardServiceImpl;
+import application.util.DataReceiver;
+import application.util.StageManager;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
-public class UpdateController {
+public class UpdateController implements DataReceiver {
 
+    @FXML private TextField inputTitle;
+    @FXML private TextField inputWriter;
+    @FXML private TextArea inputContent;
+    Integer no;
+    
+    BoardService boardService = new BoardServiceImpl();
+    
     @FXML
-    private TextArea inputContent;
-
-    @FXML
-    private TextField inputTitle;
-
-    @FXML
-    private TextField inputWriter;
-
-    @FXML
-    void delete(ActionEvent event) {
-
+    void initialize() {
+    	Platform.runLater( () -> {
+    		Board board = boardService.select(this.no);
+    		inputTitle.setText( board.getTitle() );
+    		inputWriter.setText( board.getWriter() );
+    		inputContent.setText( board.getContent() );
+    	});
     }
 
     @FXML
     void list(ActionEvent event) {
-
+    	StageManager.show("Main");
     }
 
     @FXML
@@ -31,4 +40,13 @@ public class UpdateController {
 
     }
 
+    @FXML
+    void delete(ActionEvent event) {
+    	
+    }
+    
+    @Override
+    public void receiveData(Object data) {
+		this.no = (Integer) data;
+	}
 }
