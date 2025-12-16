@@ -110,13 +110,14 @@ public class BoardDAO extends JDBConnection {
 	public int inser(Board board) {
 		int result = 0;			// 결과 : 적용된 데이터 개수
 		
-		String sql = " INSERT INTO board ( title, writer, content ) "
-				   + " VALUES( ?, ?, ? ) ";		
+		String sql = " INSERT INTO board ( id, title, writer, content ) "
+				   + " VALUES( ?, ?, ?, ? ) ";		
 		try {
 			psmt = con.prepareStatement(sql);		// 쿼리 실행 객체 생성
-			psmt.setString(1, board.getTitle());	// 1번 ? 에 title(제목) 세팅
-			psmt.setString(2, board.getWriter());	// 2번 ? 에 writer(작성자) 세팅
-			psmt.setString(3, board.getContent());	// 3번 ? 에 content(내용) 세팅			
+			psmt.setString(1, board.getId());		// 1번 ? 에 id(아이디) 세팅
+			psmt.setString(2, board.getTitle());	// 2번 ? 에 title(제목) 세팅
+			psmt.setString(3, board.getWriter());	// 3번 ? 에 writer(작성자) 세팅
+			psmt.setString(4, board.getContent());	// 4번 ? 에 content(내용) 세팅			
 			result = psmt.executeUpdate();			// SQL 실행 요청
 			// * executeUpdate()
 			// SQL(INSERT, UPDATE, DELEDTE) 실행 시 적용된 데이터 개수를 int 타입으로 반환한다.

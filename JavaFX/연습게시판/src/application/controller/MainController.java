@@ -40,7 +40,7 @@ public class MainController {
     	colTitle.setCellValueFactory( new PropertyValueFactory<>("title") );
     	colWriter.setCellValueFactory( new PropertyValueFactory<>("writer") );
     	colCreatedAt.setCellValueFactory( new PropertyValueFactory<>("createdAt") );
-    	colUpdatedAt.setCellValueFactory( new PropertyValueFactory<>("updateAt") );
+    	colUpdatedAt.setCellValueFactory( new PropertyValueFactory<>("updatedAt") );
     	
     	// 테이블 뷰에 데이터 추가하기
     	ObservableList<Board> list = FXCollections.observableArrayList(boardList);

@@ -1,6 +1,7 @@
 package application.DTO;
 
 import java.util.Date;
+import java.util.UUID;
 
 import javafx.scene.control.CheckBox;
 import lombok.AllArgsConstructor;
@@ -27,6 +28,7 @@ public class Board {
 	
 	private CheckBox check;
 	private int no;
+	@NonNull private String id;
 	@NonNull private String title;
 	@NonNull private String writer;
 	@NonNull private String content;
@@ -35,6 +37,14 @@ public class Board {
 	
 	public Board() {
 		this.check = new CheckBox();
+		this.id = UUID.randomUUID().toString();
+	}
+	
+	public Board(@NonNull String title, @NonNull String writer, @NonNull String content) {
+		this.id = UUID.randomUUID().toString();
+		this.title = title;
+		this.writer = writer;
+		this.content = content;
 	}
 	
 }
